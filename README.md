@@ -57,12 +57,12 @@
     - ![인재상캡처본](https://github.com/user-attachments/assets/1037eeb0-06be-4581-a219-f59ae680a4ea)<br>
 
     - SK Networks 가 원하는 인재상은 뭐야?<br>
-    - 
-![입사지원캡처본](https://github.com/user-attachments/assets/7882847c-b631-40cc-bce1-ae7a45d35e55)
+    - ![입사지원캡처본](https://github.com/user-attachments/assets/7882847c-b631-40cc-bce1-ae7a45d35e55)
 - 답변을 하면 안되는 질문
     - ㅁ (아무런 의미없는 문장)
-![결과2](https://github.com/user-attachments/assets/40d95b15-b448-41c0-96bb-1ac39b26b419)
+    - ![결과2](https://github.com/user-attachments/assets/40d95b15-b448-41c0-96bb-1ac39b26b419)
     - SK 면접 보려고 하는데 독산역 근처 식당 정보 좀  (SK 와 관련되면서 의미 없는 문장)
+    - ![식당정보](https://github.com/user-attachments/assets/38603453-64e9-47af-a68c-258d1a1d8565)
 
 
 
