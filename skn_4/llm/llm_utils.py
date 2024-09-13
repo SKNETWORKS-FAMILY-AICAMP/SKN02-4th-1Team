@@ -23,9 +23,10 @@ class ConditionalSearchTool:
     def run(self, query):
         if self.search_count < self.search_limit:
             self.search_count += 1
-            return self.search_tool.run(query)  # 실제 검색 실행
+            return self.search_tool.run(query) + "한국말로 생각해" # 실제 검색 실행
         else:
-            return "검색 횟수를 초과했습니다. 추가적인 정보가 필요하다면 답변을 생성할 때 적당한 검색결과가 없다고 답하십시오."
+            return "검색 횟수를 초과했습니다. 추가적인 정보가 필요하다면 답변을 생성할 때 ""을 제출하십시오. \
+                또한 절대 기존지식을 토대로 답변을 생성하지 말고 지금까지의 검색결과만을 통해 답변을 생성하십시오. 다시한번 말하지만 검색을 멈추십시오."
 
 class Prompt_creater :
     def __init__(self, OPENAI_KEY):
@@ -33,6 +34,9 @@ class Prompt_creater :
         당신은 prompt생성자입니다. 
         prompt를 생성할 때 항상 질문을 기반으로 sk-networks와 관련되게 질문을 수정하십시오.
         prompt만을 답하십시오.
+        만약 질문이 기업정보, 직무정보, 채용정보, 면접정보 등의 정보를 얻는 것이 아닌 질문이라면
+        "의미 없는 질문입니다. 검색하지 마세요"라고 답하십시오.
+        하지만 이전 대화내용을 같이 고려해서 판단하십시오.
         질문: {question}
         prompt:"""
         prompt_custom = PromptTemplate.from_template(template2)
@@ -58,16 +62,24 @@ class Response_creater :
         retriever = vectorstore.as_retriever()
         template ="""
         검색결과 : {search}
-        당신은 sk-netowrks 채용정보와 면접정보를 제공해주는 챗봇입니다.
-        그러므로 당신의 역할이 아닌 질문에는 "해당 질문에 대한 답변은 저의 역할이 아닙니다."라고 하십시오.
+        당신은 sk-netowrks 기업정보, 직무정보, 채용정보, 면접정보를 제공해주는 챗봇입니다.
+        그러므로 당신의 역할이 아닌 질문에는 "해당 질문에 대한 답변은 저의 역할이 아닙니다. 그외 궁금하신 점이 있으신가요?"라고 하십시오.
+        당신은 역량과 업무, 기업, 직무, 채용, 면접, 뉴스와 같은 취업 및 면접에 관련된 내용에 대해서 답할 수 있어야합니다.
         다음과 같은 맥락을 사용하여 마지막 질문에 대답하십시오.
-        문장을 중점적으로 답변을 생성하고 검색결과는 부가적인 내용을 추가할때만 사용하십시오.
+        검색결과를 너무 집중하지 마세요. 당신은 문장에 더 집중하십시오.
+        문장만을 기반으로 답변을 생성하고 검색결과는 부가적인 내용을 추가할때만 사용하십시오.
+        문장과 질문이 서로 관계가 깊다면 그건 답변을 하셔야합니다.
+        문장과 검색결과에 있는 내용으로만 판단하여 답변을 생성하십시오.
         답변을 생성할 때 되도록 숫자를 붙여서 설명하십시오.
-        채용공고에 대해 물어본다면 이것도 당신의 역할이지만 https://www.skcareers.com/을 참조하라고 답하십시오.
+        답변은 최대한 구체적으로 생성하십시오.
+        채용공고에 대해 물어본다면 이것도 당신의 역할이며 'https://www.skcareers.com'을 참조하라고 답하십시오.
+        답변을 생성할 때 텍스트로만 답변하십시오.
+        
+        채용방식에 대해 물어본다면 답변을 생성하십시오.
         문장: {context}
         질문: {question}
         도움이 되는 답변:"""
-
+        
         rag_prompt_custom = PromptTemplate.from_template(template)
 
         # gpt-4o-mini를 이용해서 LLM 설정

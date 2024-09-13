@@ -11030,7 +11030,7 @@ body {
     color: #fff;
   }
   #mainNav.navbar-shrink {
-    background-color: #fff;
+    background-color: rgba(0, 0, 0, 0.6);
   }
   #mainNav.navbar-shrink .navbar-brand {
     color: #000;

@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}About SKN{% endblock %}
+
+{% block content %}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>About SKN</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="{% static 'styles.css' %}" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 이미지 애니메이션 스타일 -->
+    <style>
+        .scroll-image {
+            width: 60%;
+            height: 100%;
+            position: absolute;
+            transition: transform 0.5s ease; /* 부드러운 이동 효과 */
+        }
+
+        .image-wrapper {
+            position: relative;
+            height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .image-1 { top: 17%; }
+        .image-2 { top: 17%; }
+        .image-3 { top: 17%; }
+        .image-4 { top: 17%; }
+
+        /* 이미지의 시작 위치 (초기에는 좌우로 약간 이동한 상태) */
+        .image-right1 { left: 20%; height: 70%;}
+        .image-right2 { left: 100%; height: 70%;}
+        .image-right3 { left: 180%; height: 70%;}
+        .image-right4 { left: 100%; height: 70%;}
+        .signup-section {
+            min-height: 200vh;
+            background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{% static 'assets/img/1_1.jpg' %}"); 
+            /* background-image: url("{% static 'assets/img/1_1.jpg' %}" ); 원하는 배경 이미지 경로 */
+            background-size: cover; /* 이미지가 섹션 전체에 꽉 차도록 설정 */
+            background-position: center; /* 이미지가 가운데 정렬되도록 설정 */
+            background-repeat: no-repeat; /* 이미지 반복 없이 한 번만 표시 */
+            padding: 100px 0; /* 상하 여백 추가로 섹션 높이 설정 */
+        }
+        body {
+            overflow: scroll; /* 스크롤은 허용하지만 스크롤바는 숨기기 */
+        }
+        /* 스크롤바 숨기기 */
+        ::-webkit-scrollbar {
+            display: none; /* 웹킷 기반 브라우저용 */
+        }
+        body {
+            -ms-overflow-style: none;  /* 인터넷 익스플로러, 엣지 */
+            scrollbar-width: none;  /* 파이어폭스 */
+        }
+        /* 기본 네비게이션 스타일 */
+        .navbar-nav .nav-link {
+            color: rgb(88, 88, 88);
+            font-weight: bold;
+            font-size: 18px;
+            transition: all 0.3s ease; /* 변화가 부드럽게 일어나도록 설정 */
+        }
+        /* 마우스 오버 시 효과 */
+        .navbar-nav .nav-link:hover {
+            font-size: 20px; /* 살짝 커짐 */
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8); /* 글로우 효과 */
+            color: rgb(255, 255, 255); /* 글자 색상도 살짝 밝게 변함 */
+        }
+    </style>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            var scrollY = window.scrollY;
+
+            // 각 이미지의 좌우 이동을 스크롤에 따라 다르게 설정
+            var image1 = document.querySelector('.image-1');
+            var image2 = document.querySelector('.image-2');
+            var image3 = document.querySelector('.image-3');
+            var image4 = document.querySelector('.image-4');
+
+            // 스크롤 값에 따라 이미지가 좌우로 이동하는 양을 계산
+            image1.style.transform = 'translateX(' + (-scrollY * 3.1) + 'px)';
+            image2.style.transform = 'translateX(' + (-scrollY * 3.1) + 'px)';
+            image3.style.transform = 'translateX(' + (-scrollY * 3.1) + 'px)';
+            image4.style.transform = 'translateX(' + (-scrollY * 3.1) + 'px)';
+        });
+    </script>
+</head>
+<link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
+<body id="page-top">
+    <!-- Navigation
+    <img class="img-fluid" src="{% static 'assets/img/ipad.png' %}" alt="..." />
+    <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="{% static 'assets/img/bg-masthead.jpg' %}" alt="..." /></div>
+    <div class="col-lg-6"><img class="img-fluid" src="{% static 'assets/img/demo-image-01.jpg' %}" alt="..." /></div>
+    <div class="col-lg-6"><img class="img-fluid" src="{% static 'assets/img/demo-image-02.jpg' %}" alt="..." /></div>-->
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="/">
+                <img src="{% static 'assets/img/logo.png' %}" alt="SK Networks 로고" style="height: 80px;">
+            </a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <!-- <div class="collapse navbar-collapse" id="navbarResponsive"> -->
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}" style="color: white; font-weight: bold; font-size: 18px;"> Ask Me </a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}" style="color: white; font-weight: bold; font-size: 18px;"> About SKN </a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'team' %}"  style="color: white; font-weight: bold; font-size: 18px;"> Copyright Team </a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="image-wrapper signup-section" id="image-section">
+        <img src="{% static 'assets/img/SK_year.png' %}" class="scroll-image image-1 image-right1" alt="Business Card 1" style="position: fixed;">
+        <img src="{% static 'assets/img/SK_info.png' %}" class="scroll-image image-2 image-right2" alt="Business Card 2" style="position: fixed;">
+        <img src="{% static 'assets/img/SK_gorverance.png' %}" class="scroll-image image-3 image-right3" alt="Business Card 3" style="position: fixed;">
+        
+    </section>
+</body>
+{% endblock %}

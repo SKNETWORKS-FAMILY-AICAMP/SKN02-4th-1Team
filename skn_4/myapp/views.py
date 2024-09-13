@@ -2,17 +2,14 @@ from django.shortcuts import render
 from llm import llm_utils
 
 # Create your views here.
-def index(request):
-    return render(request, 'index.html')
-def chatbot(request):
-    return render(request, 'chatbot.html')
-
-def askme(request):
-    return render(request, 'askme.html')
+def home(request):
+    return render(request, 'home.html')
 def about(request):
     return render(request, 'about.html')
 def team(request):
-    return render(request, 'team.html')  
+    return render(request, 'team.html')
+def chatbot(request):
+    return render(request, 'chatbot.html')
 
 # views.py
 from django.http import JsonResponse

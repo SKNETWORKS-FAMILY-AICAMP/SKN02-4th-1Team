@@ -1,4 +1,9 @@
+{% extends 'base.html' %}
 {% load static %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -14,17 +19,17 @@
         <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{% static 'style.css' %}" rel="stylesheet" />
+        <link href="{% static 'styles.css' %}" rel="stylesheet" />
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
         <!-- 애니메이션 및 스크립트 처리 -->
         <style>
         #input-form {
             display: flex;
-            position: relative;
-            top: 230%;
+            position: fixed;
+            top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) scale(2);
-            width: 80%; /* 입력창 너비를 설정 */
+            width: 40%; /* 입력창 너비를 설정 */
             transition: all 1s ease-out; /* 애니메이션 효과 */
         }
         .chat-container {
@@ -33,9 +38,12 @@
             background-size: cover; /* 이미지가 섹션 전체에 꽉 차도록 설정 */
             background-position: center; /* 이미지가 가운데 정렬되도록 설정 */
             background-repeat: no-repeat; /* 이미지 반복 없이 한 번만 표시 */
+            position: fixed;
             height: 60vh;
+            width: 50%;
+            left: 50%;
             overflow-x: hidden; /* 가로 스크롤 없애기 */
-            overflow-y: auto; 
+            overflow-y: auto;
             scrollbar-width: none;
             /* border: 1px solid #ddd;  */
             padding: 10px;
@@ -43,7 +51,7 @@
             display: none;
             background-blend-mode: color-burn;
             /* opacity: 0.1; */
-            transform: translateY(100%);
+            transform: translate(-50%, 0);
             transition: transform 1s ease-out, opacity 1s ease-out;
             flex-direction: column; /* 채팅이 세로로 쌓이도록 설정 */
         }
@@ -73,16 +81,16 @@
 
         /* 스크롤 위로 이동 버튼 스타일 */
         #scroll-to-top {
-            position:relative;
-            bottom: 100px;
-            right: 45px;
+            position:fixed;
+            bottom: 24%;
+            right: 20%;
             background-color: #007bff;
             color: white;
             border: none;
             border-radius: 50%;
             width: 40px;
             height: 40px;
-            display: flex;
+            display: none;
             justify-content: center;
             align-items: center;
             cursor: pointer;
@@ -98,6 +106,19 @@
             background-position: center; /* 이미지가 가운데 정렬되도록 설정 */
             background-repeat: no-repeat; /* 이미지 반복 없이 한 번만 표시 */
             padding: 100px 0; /* 상하 여백 추가로 섹션 높이 설정 */
+        }
+        /* 기본 네비게이션 스타일 */
+        .navbar-nav .nav-link {
+            color: rgb(88, 88, 88);
+            font-weight: bold;
+            font-size: 18px;
+            transition: all 0.3s ease; /* 변화가 부드럽게 일어나도록 설정 */
+        }
+        /* 마우스 오버 시 효과 */
+        .navbar-nav .nav-link:hover {
+            font-size: 20px; /* 살짝 커짐 */
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8); /* 글로우 효과 */
+            color: rgb(255, 255, 255); /* 글자 색상도 살짝 밝게 변함 */
         }
         </style>
         
@@ -120,9 +141,9 @@
                 </button>
                 <!-- <div class="collapse navbar-collapse" id="navbarResponsive"> -->
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="{% url 'askme' %}" style="color: white; font-weight: bold; font-size: 18px;"> Ask Me </a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}" style="color: white; font-weight: bold; font-size: 18px;"> About </a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'team' %}"  style="color: white; font-weight: bold; font-size: 18px;"> Team1 </a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}" style="color: white; font-weight: bold; font-size: 18px;"> Ask Me </a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}" style="color: white; font-weight: bold; font-size: 18px;"> About SKN </a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'team' %}"  style="color: white; font-weight: bold; font-size: 18px;"> Copyright Team </a></li>
                     </ul>
                 </div>
                 
@@ -135,8 +156,8 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5">
                     <div class="col-md-10 col-lg-8 mx-auto text-center">
-                        <h2 class="text-blue mb-5">ASK ME</h2>
-                        
+                        <h2 class="text-blue mb-5"></h2>
+        
                         <!-- Chat Container -->
                         <div class="chat-container" id="chat-container">
                             
@@ -146,7 +167,7 @@
                         <!-- Input Form -->
                         <div class="other" id="input-form">
                             
-                            <input type="text" class="form-control" id="user-input" placeholder="Type your question here..." aria-label="Enter your question..." required>
+                            <input type="text" class="form-control" id="user-input" placeholder="SK네트웍스 채용정보에 대해서 질문하세요" aria-label="Enter your question..." required>
                             <div class="input-group-append">
                                 <button class="btn btn-primary" id="send-button" style="height: 100%; padding: 1; border-radius: 0;">
                                     <i class="far fa-paper-plane fa-lg text-white" style="line-height: 1.5;"></i>
@@ -166,8 +187,7 @@
         </section>
         
         
-        <!-- Footer-->
-        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; Your Website 2023</div></footer>
+
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
@@ -181,16 +201,24 @@
     document.getElementById('user-input').addEventListener('keypress', function(event) {
         if (event.key === 'Enter') {
             sendMessage();
+            event.preventDefault();  // 엔터 키 입력시 기본 동작을 막아줌
         }
     });
 
+    let isWaitingForResponse = false;  // 응답 대기 상태를 관리하는 변수
+
     function sendMessage() {
+        if (isWaitingForResponse) {
+            return;
+        }
+
         const userInput = document.getElementById('user-input').value;
         if (!userInput.trim()) return;
 
         // Display user message
         const inputForm = document.getElementById('input-form');
         const chatContainer = document.getElementById('chat-container');
+        const scrollToTopButton = document.getElementById('scroll-to-top');
         
         // 중앙에 있던 입력창을 아래로 이동시키기 위해 스타일 변경
 
@@ -200,18 +228,23 @@
         chatContainer.style.display = 'flex';
         chatContainer.appendChild(userMessage);
 
-        inputForm.style.position = 'relative';
-        inputForm.style.top = 'auto';
-        inputForm.style.transform = 'translate(-50%, 0)';
+        inputForm.style.position = 'fixed';
+        inputForm.style.top = '75%';
+        inputForm.style.transform = 'translate(-50%, 50%)';
         inputForm.style.marginTop = '20px';
         setTimeout(function() {
             chatContainer.style.opacity = 1; // 투명도 조정
-            chatContainer.style.transform = 'translateY(0)'; // 화면 아래에서 위로 올라옴
+            chatContainer.style.transform = 'translate(-50%,0)'; // 화면 아래에서 위로 올라옴4
+            scrollToTopButton.style.display = 'flex';
         }, 100);
 
         // Clear the input
         document.getElementById('user-input').value = '';
 
+        // 버튼을 비활성화하고 입력창은 활성화 상태로 유지
+        document.getElementById('send-button').disabled = true;
+        isWaitingForResponse = true;
+        
         // Send message to Django view
         fetch('/chatbot/', {
             method: 'POST',
@@ -233,9 +266,17 @@
 
             // Scroll to the bottom
             chatContainer.scrollTop = chatContainer.scrollHeight;
+
+            // 응답을 받은 후 버튼을 다시 활성화, 입력창은 계속 활성 상태
+            document.getElementById('send-button').disabled = false;
+            isWaitingForResponse = false;
         })
         .catch(error => {
             console.error('Error:', error);
+
+            // 에러가 발생하면 버튼을 다시 활성화, 입력창은 계속 활성 상태
+            document.getElementById('send-button').disabled = false;
+            isWaitingForResponse = false;
         });
     }
 
@@ -263,3 +304,4 @@
         </script>
     </body>
 </html>
+{% endblock %}
